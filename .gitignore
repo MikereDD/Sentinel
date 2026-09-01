@@ -1,0 +1,13 @@
+# Sentinel component repositories
+Sentinel-Android/
+Sentinel-Agent-Linux/
+Sentinel-Agent-Windows/
+Sentinel-Protocol/
+
+# Local/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+.DS_Store
