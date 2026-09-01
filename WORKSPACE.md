@@ -2,7 +2,7 @@
 
 Sentinel is a local-first network awareness and monitoring family.
 
-## Repository family
+## Monorepo components
 
 - `Sentinel-Android`
   - Primary dashboard/controller.
@@ -49,6 +49,6 @@ Sentinel is a local-first network awareness and monitoring family.
 
 ## Repository versions
 
-New placeholder repositories begin at `0.1-dev.1`.
+New agent and protocol components begin at `0.1-dev.1`.
 
 `Sentinel-Android` retains its own existing application version history.

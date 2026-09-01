@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://typezero.local/sentinel/events/event.schema.json",
+  "title": "Sentinel Event (Draft)",
+  "type": "object",
+  "required": [
+    "eventId",
+    "eventType",
+    "timestamp",
+    "severity",
+    "evidence"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string"
+    },
+    "eventType": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "severity": {
+      "enum": [
+        "info",
+        "change",
+        "attention",
+        "critical"
+      ]
+    },
+    "summary": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "hostId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence": {
+      "enum": [
+        "discovered",
+        "observed",
+        "instrumented"
+      ]
+    },
+    "details": {
+      "type": "object"
+    }
+  }
+}

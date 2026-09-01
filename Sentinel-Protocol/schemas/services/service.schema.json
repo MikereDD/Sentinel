@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://typezero.local/sentinel/services/service.schema.json",
+  "title": "Sentinel Service or Listener (Draft)",
+  "type": "object",
+  "required": [
+    "hostId",
+    "protocol",
+    "port",
+    "evidence"
+  ],
+  "properties": {
+    "hostId": {
+      "type": "string"
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "protocol": {
+      "type": "string"
+    },
+    "port": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "processName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "serviceName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence": {
+      "enum": [
+        "discovered",
+        "observed",
+        "instrumented"
+      ]
+    }
+  }
+}

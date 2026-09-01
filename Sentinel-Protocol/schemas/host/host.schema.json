@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://typezero.local/sentinel/host/host.schema.json",
+  "title": "Sentinel Host (Draft)",
+  "type": "object",
+  "required": [
+    "hostId",
+    "evidence"
+  ],
+  "properties": {
+    "hostId": {
+      "type": "string"
+    },
+    "hostname": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "displayName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "platform": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "addresses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence": {
+      "enum": [
+        "discovered",
+        "observed",
+        "instrumented"
+      ]
+    }
+  }
+}

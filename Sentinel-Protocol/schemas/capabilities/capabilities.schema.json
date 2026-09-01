@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://typezero.local/sentinel/capabilities/capabilities.schema.json",
+  "title": "Sentinel Agent Capabilities (Draft)",
+  "type": "object",
+  "required": [
+    "agentId",
+    "platform",
+    "capabilities"
+  ],
+  "properties": {
+    "agentId": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "string"
+    },
+    "agentVersion": {
+      "type": "string"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  }
+}

@@ -1,17 +1,38 @@
 # Sentinel
 
-This directory is the local workspace containing the Sentinel repository family.
+Sentinel is a local-first network awareness and monitoring system for discovering devices, tracking changes, monitoring services, and correlating host and connection telemetry across Android, Linux, and Windows.
 
-See [`WORKSPACE.md`](WORKSPACE.md) for the canonical repository boundaries, design principles, and initial development sequence.
+This repository is the canonical Sentinel monorepo.
 
-Each child directory is intended to be its own Git repository:
+## Components
 
-```text
-Sentinel/
-├── Sentinel-Android/
-├── Sentinel-Agent-Linux/
-├── Sentinel-Agent-Windows/
-└── Sentinel-Protocol/
-```
+- `Sentinel-Android`
+  - Android dashboard/controller
+  - Local network discovery
+  - Device inventory, activity, monitors, and alerts
 
-The workspace root itself does not need to be a Git repository.
+- `Sentinel-Agent-Linux`
+  - Linux-native host telemetry
+  - Listeners, connections, service/process attribution, and health
+
+- `Sentinel-Agent-Windows`
+  - Windows-native host telemetry
+  - Equivalent Windows-side visibility through native APIs
+
+- `Sentinel-Protocol`
+  - Shared platform-neutral contract
+  - Hosts, services, connections, events, capabilities, authentication, versioning, and compatibility
+
+## Project direction
+
+Sentinel distinguishes between what it:
+
+- discovered
+- observed
+- knows directly through instrumentation
+
+The core philosophy is:
+
+**Observe first. Understand second. Act deliberately.**
+
+See `WORKSPACE.md` for architecture and development sequencing.

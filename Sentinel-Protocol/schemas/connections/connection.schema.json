@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://typezero.local/sentinel/connections/connection.schema.json",
+  "title": "Sentinel Connection (Draft)",
+  "type": "object",
+  "required": [
+    "hostId",
+    "protocol",
+    "localAddress",
+    "localPort",
+    "remoteAddress",
+    "remotePort",
+    "evidence"
+  ],
+  "properties": {
+    "hostId": {
+      "type": "string"
+    },
+    "direction": {
+      "enum": [
+        "inbound",
+        "outbound",
+        "unknown"
+      ]
+    },
+    "protocol": {
+      "type": "string"
+    },
+    "localAddress": {
+      "type": "string"
+    },
+    "localPort": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "remoteAddress": {
+      "type": "string"
+    },
+    "remotePort": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535
+    },
+    "processName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "serviceName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "startedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "evidence": {
+      "enum": [
+        "discovered",
+        "observed",
+        "instrumented"
+      ]
+    }
+  }
+}
