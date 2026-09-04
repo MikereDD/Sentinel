@@ -28,6 +28,12 @@
         "null"
       ]
     },
+    "localInterface": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
     "port": {
       "type": "integer",
       "minimum": 0,

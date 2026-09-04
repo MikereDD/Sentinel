@@ -7,7 +7,8 @@ def snapshot(host_id: str) -> dict[str, Any]:
     for row in collect_rows():
         if row.remote is None:
             continue
-        items.append({
+
+        item = {
             "hostId": host_id,
             "direction": "unknown",
             "protocol": row.protocol,
@@ -17,5 +18,13 @@ def snapshot(host_id: str) -> dict[str, Any]:
             "remoteAddress": row.remote.address,
             "remotePort": row.remote.port,
             "evidence": "instrumented",
-        })
+        }
+
+        if row.local.interface:
+            item["localInterface"] = row.local.interface
+        if row.remote.interface:
+            item["remoteInterface"] = row.remote.interface
+
+        items.append(item)
+
     return {"hostId": host_id, "connections": items}

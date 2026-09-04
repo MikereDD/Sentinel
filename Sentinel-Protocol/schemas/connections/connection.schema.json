@@ -40,6 +40,12 @@
       "minimum": 0,
       "maximum": 65535
     },
+    "localInterface": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
     "remoteAddress": {
       "type": "string"
     },
@@ -47,6 +53,12 @@
       "type": "integer",
       "minimum": 0,
       "maximum": 65535
+    },
+    "remoteInterface": {
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "processName": {
       "type": [
