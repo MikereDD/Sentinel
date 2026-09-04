@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sentinel Host Snapshot (Draft)",
+  "type": "object",
+  "required": [
+    "protocolVersion",
+    "messageType",
+    "messageId",
+    "timestamp",
+    "senderId",
+    "payload"
+  ],
+  "properties": {
+    "protocolVersion": {
+      "type": "string"
+    },
+    "messageType": {
+      "const": "host.snapshot"
+    },
+    "messageId": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "senderId": {
+      "type": "string"
+    },
+    "correlationId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "payload": {
+      "$ref": "../host/host.schema.json"
+    }
+  },
+  "additionalProperties": true
+}

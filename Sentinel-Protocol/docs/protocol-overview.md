@@ -14,16 +14,12 @@
 
 Not selected yet.
 
-The first protocol milestone defines message semantics before committing the ecosystem to HTTP, WebSocket, gRPC, raw TCP, or another transport.
+For `0.1-dev.2`, the reference Linux agent emits UTF-8 JSON messages to stdout for
+development and testing. That does not define the eventual network transport.
 
 ## Message envelope
 
-Every message should eventually include at least:
+Every message includes protocol version, message type, message identifier, timestamp,
+sender identity, payload, and optional correlation identifier.
 
-- protocol version
-- message type
-- message identifier
-- timestamp
-- sender identity
-- payload
-- optional correlation identifier
+Concrete bootstrap message types are documented in `message-types.md`.

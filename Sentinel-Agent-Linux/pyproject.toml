@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sentinel-agent-linux"
+version = "0.1.dev2"
+description = "Linux-native telemetry agent for Sentinel"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+sentinel-agent-linux = "sentinel_agent.__main__:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

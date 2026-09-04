@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sentinel Connection Snapshot (Draft)",
+  "type": "object",
+  "required": [
+    "protocolVersion",
+    "messageType",
+    "messageId",
+    "timestamp",
+    "senderId",
+    "payload"
+  ],
+  "properties": {
+    "protocolVersion": {
+      "type": "string"
+    },
+    "messageType": {
+      "const": "network.connections"
+    },
+    "messageId": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "senderId": {
+      "type": "string"
+    },
+    "correlationId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "payload": {
+      "type": "object",
+      "required": [
+        "hostId",
+        "connections"
+      ],
+      "properties": {
+        "hostId": {
+          "type": "string"
+        },
+        "connections": {
+          "type": "array",
+          "items": {
+            "$ref": "../connections/connection.schema.json"
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

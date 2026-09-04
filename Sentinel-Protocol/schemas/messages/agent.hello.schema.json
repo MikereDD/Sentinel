@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sentinel Agent Hello (Draft)",
+  "type": "object",
+  "required": [
+    "protocolVersion",
+    "messageType",
+    "messageId",
+    "timestamp",
+    "senderId",
+    "payload"
+  ],
+  "properties": {
+    "protocolVersion": {
+      "type": "string"
+    },
+    "messageType": {
+      "const": "agent.hello"
+    },
+    "messageId": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "senderId": {
+      "type": "string"
+    },
+    "correlationId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "payload": {
+      "type": "object",
+      "required": [
+        "agentId",
+        "agentVersion",
+        "platform",
+        "protocolVersion"
+      ],
+      "properties": {
+        "agentId": {
+          "type": "string"
+        },
+        "agentVersion": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "protocolVersion": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

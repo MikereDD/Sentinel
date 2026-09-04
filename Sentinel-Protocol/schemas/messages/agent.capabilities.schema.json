@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sentinel Agent Capabilities Message (Draft)",
+  "type": "object",
+  "required": [
+    "protocolVersion",
+    "messageType",
+    "messageId",
+    "timestamp",
+    "senderId",
+    "payload"
+  ],
+  "properties": {
+    "protocolVersion": {
+      "type": "string"
+    },
+    "messageType": {
+      "const": "agent.capabilities"
+    },
+    "messageId": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "senderId": {
+      "type": "string"
+    },
+    "correlationId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "payload": {
+      "type": "object",
+      "required": [
+        "agentId",
+        "platform",
+        "capabilities"
+      ],
+      "properties": {
+        "agentId": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "agentVersion": {
+          "type": "string"
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

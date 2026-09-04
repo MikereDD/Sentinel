@@ -2,25 +2,47 @@
 
 Linux-native telemetry agent for the Sentinel ecosystem.
 
-## Purpose
+## Current milestone — 0.1-dev.2
 
-The Linux agent gives Sentinel direct, host-side knowledge that an Android network scanner cannot obtain reliably from the outside.
+The first executable agent is implemented in Python 3 using the standard library plus
+common Linux userspace commands (`ip` and `ss`).
 
-The agent is expected to report only information supported by the host and by its advertised capabilities.
+It currently provides:
 
-## Initial responsibilities
+- stable host identity derived from `/etc/machine-id`;
+- agent/protocol version information;
+- explicit capability advertisement;
+- host metadata and addresses;
+- listening TCP/UDP sockets;
+- active TCP/UDP connection metadata;
+- Sentinel Protocol JSON output.
 
-- Stable host identity.
-- Agent/protocol version information.
-- Capability advertisement.
-- Listening sockets.
-- Active inbound/outbound connection metadata.
-- Process/service attribution where available.
-- Service health/state where available.
-- Event/change reporting.
-- Local authenticated communication with Sentinel clients.
+Advertised capabilities:
 
-## First milestone
+- `host.identity`
+- `network.listeners`
+- `network.connections`
+
+## Run
+
+```bash
+cd Sentinel-Agent-Linux
+PYTHONPATH=src python -m sentinel_agent
+```
+
+Human-readable output:
+
+```bash
+PYTHONPATH=src python -m sentinel_agent --pretty
+```
+
+## Test
+
+```bash
+PYTHONPATH=src python -m unittest discover -s tests -v
+```
+
+## First milestone flow
 
 ```text
 agent starts
@@ -29,19 +51,15 @@ agent starts
 → reports host information
 → reports listeners
 → reports active connections
-→ Sentinel-Android displays the data
+→ emits Sentinel Protocol JSON
 ```
 
-## Non-goals for the first milestone
+## Deferred
 
-- Packet payload/content inspection.
-- Automatic firewall changes.
-- eBPF as a hard dependency.
-- Enterprise-scale telemetry storage.
-- Cloud dependence.
-
-## Implementation language
-
-Not selected yet.
-
-The first implementation should be chosen after the protocol contract and deployment requirements are sufficiently clear rather than locking the project to a language during repository bootstrap.
+- process/service attribution;
+- systemd service state;
+- authentication/network transport;
+- eBPF;
+- packet payload inspection;
+- automatic firewall changes;
+- cloud dependence.

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sentinel Listener Snapshot (Draft)",
+  "type": "object",
+  "required": [
+    "protocolVersion",
+    "messageType",
+    "messageId",
+    "timestamp",
+    "senderId",
+    "payload"
+  ],
+  "properties": {
+    "protocolVersion": {
+      "type": "string"
+    },
+    "messageType": {
+      "const": "network.listeners"
+    },
+    "messageId": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "senderId": {
+      "type": "string"
+    },
+    "correlationId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "payload": {
+      "type": "object",
+      "required": [
+        "hostId",
+        "listeners"
+      ],
+      "properties": {
+        "hostId": {
+          "type": "string"
+        },
+        "listeners": {
+          "type": "array",
+          "items": {
+            "$ref": "../services/service.schema.json"
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

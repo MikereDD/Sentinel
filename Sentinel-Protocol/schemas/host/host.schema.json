@@ -29,11 +29,36 @@
         "null"
       ]
     },
+    "osName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "osVersion": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "kernel": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "architecture": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
     "addresses": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "uniqueItems": true
     },
     "evidence": {
       "enum": [
@@ -42,5 +67,6 @@
         "instrumented"
       ]
     }
-  }
+  },
+  "additionalProperties": true
 }

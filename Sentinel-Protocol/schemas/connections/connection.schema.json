@@ -26,6 +26,12 @@
     "protocol": {
       "type": "string"
     },
+    "state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
     "localAddress": {
       "type": "string"
     },
@@ -48,6 +54,13 @@
         "null"
       ]
     },
+    "processId": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
     "serviceName": {
       "type": [
         "string",
@@ -68,5 +81,6 @@
         "instrumented"
       ]
     }
-  }
+  },
+  "additionalProperties": true
 }
