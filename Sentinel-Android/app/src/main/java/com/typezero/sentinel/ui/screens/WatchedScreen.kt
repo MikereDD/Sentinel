@@ -40,6 +40,9 @@ import com.typezero.sentinel.data.db.WatchedTarget
 import com.typezero.sentinel.ui.theme.DarkBorder
 import com.typezero.sentinel.ui.theme.SentinelGreen
 import com.typezero.sentinel.ui.theme.SentinelRed
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
 fun WatchedScreen(
@@ -166,11 +169,13 @@ private fun WatchedRow(target: WatchedTarget, onRemove: (WatchedTarget) -> Unit)
             Column(modifier = Modifier.weight(1f)) {
                 Text(target.label, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.SemiBold)
                 Text(
-                    buildString {
-                        append(target.host)
-                        target.port?.let { append(":$it") }
-                    },
+                    target.host,
                     style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Text(
+                    target.port?.let { "TCP :$it" } ?: "Reachability",
+                    style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
                 Text(
@@ -178,8 +183,17 @@ private fun WatchedRow(target: WatchedTarget, onRemove: (WatchedTarget) -> Unit)
                     style = MaterialTheme.typography.labelLarge,
                     color = statusColor
                 )
+                if (target.lastChecked > 0L) {
+                    Text(
+                        "Last checked ${formatMonitorTime(target.lastChecked)}",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
             }
             IconButton(onClick = { onRemove(target) }) { Icon(Icons.Filled.Close, contentDescription = "Remove monitor") }
         }
     }
 }
+private fun formatMonitorTime(ts: Long): String =
+    SimpleDateFormat("MMM d, HH:mm:ss", Locale.getDefault()).format(Date(ts))

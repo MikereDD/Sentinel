@@ -155,7 +155,7 @@ class SentinelRepository(
                 )
                 if (emitNewEvents) {
                     events.add(
-                        event(EventType.NEW_DEVICE, "New device found", describe(d), key, now)
+                        event(EventType.NEW_DEVICE, "Device discovered", describe(d), key, now)
                     )
                 }
             } else {
@@ -163,7 +163,7 @@ class SentinelRepository(
                     events.add(
                         event(
                             EventType.DEVICE_RETURNED,
-                            "${existing.customName ?: existing.displayName} returned online",
+                            "${existing.customName ?: existing.displayName} returned",
                             d.ip, key, now
                         )
                     )
@@ -206,7 +206,7 @@ class SentinelRepository(
                 events.add(
                     event(
                         EventType.DEVICE_OFFLINE,
-                        "${k.customName ?: k.displayName} went offline",
+                        "${k.customName ?: k.displayName} became unavailable",
                         k.lastIp, key, now
                     )
                 )
@@ -225,14 +225,14 @@ class SentinelRepository(
         val prev = stateDao.get(key)
         if (prev != null) {
             if (prev.internetUp && !result.internetUp) {
-                events.add(event(EventType.INTERNET_OUTAGE, "Internet outage", null, key, now))
+                events.add(event(EventType.INTERNET_OUTAGE, "Internet unavailable", null, key, now))
             } else if (!prev.internetUp && result.internetUp) {
                 events.add(event(EventType.INTERNET_RESTORED, "Internet restored", null, key, now))
             }
             if (prev.gatewayUp && !result.gatewayUp) {
-                events.add(event(EventType.GATEWAY_OFFLINE, "Router unreachable", result.gatewayIp, key, now))
+                events.add(event(EventType.GATEWAY_OFFLINE, "Gateway unavailable", result.gatewayIp, key, now))
             } else if (!prev.gatewayUp && result.gatewayUp) {
-                events.add(event(EventType.GATEWAY_RESTORED, "Router back online", result.gatewayIp, key, now))
+                events.add(event(EventType.GATEWAY_RESTORED, "Gateway restored", result.gatewayIp, key, now))
             }
         }
         stateDao.upsert(
@@ -257,9 +257,9 @@ class SentinelRepository(
             val prev = t.lastOnline
             if (prev != null) {
                 if (prev && !up) {
-                    events.add(event(EventType.WATCHED_OFFLINE, "${t.label} offline", t.host, key, now))
+                    events.add(event(EventType.WATCHED_OFFLINE, "${t.label} unavailable", t.host, key, now))
                 } else if (!prev && up) {
-                    events.add(event(EventType.WATCHED_RETURNED, "${t.label} back online", t.host, key, now))
+                    events.add(event(EventType.WATCHED_RETURNED, "${t.label} restored", t.host, key, now))
                 }
             }
             watchedDao.update(t.copy(lastOnline = up, lastChecked = now))

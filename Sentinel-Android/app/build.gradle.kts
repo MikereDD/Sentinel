@@ -17,8 +17,8 @@ android {
         applicationId = "com.typezero.sentinel"
         minSdk = 26
         targetSdk = 35
-        versionCode = 8
-        versionName = "1.5.0-dev.3"
+        versionCode = 9
+        versionName = "1.5.0-dev.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

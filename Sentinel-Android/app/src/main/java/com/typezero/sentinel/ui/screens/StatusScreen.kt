@@ -342,6 +342,7 @@ private fun ChangeRow(event: NetworkEvent) {
 private fun DeviceRow(device: KnownDevice, onClick: () -> Unit) {
     val autoType = runCatching { DeviceType.valueOf(device.deviceType) }.getOrDefault(DeviceType.UNKNOWN)
     val type = device.userType?.let { runCatching { DeviceType.valueOf(it) }.getOrNull() } ?: autoType
+    val isGateway = type == DeviceType.ROUTER || device.lastIp == device.networkKey
     val name = friendlyDeviceName(device, type)
 
     Row(
@@ -382,7 +383,7 @@ private fun DeviceRow(device: KnownDevice, onClick: () -> Unit) {
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
-                if (!device.strongIdentity) {
+                if (!device.strongIdentity && !isGateway) {
                     Spacer(Modifier.size(8.dp))
                     WeakIdentityBadge()
                 }

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.0-dev.4 — identity and monitor semantics
+
+- Treated the known router/gateway role as authoritative in device presentation, suppressing the `WEAK ID` badge for the gateway.
+- Normalized Activity event wording around calm state changes: discovered, unavailable, returned, and restored.
+- Improved Monitors presentation with explicit `Reachability` / `TCP :port` check types.
+- Added `Last checked` timestamps to monitors after their first direct check.
+- Kept the existing monitor database shape and direct reachability/TCP behavior unchanged.
+- Bumped Android test version to `1.5.0-dev.4` (`versionCode` 9).
 ## 1.5.0-dev.3 — phone-test polish
 
 - Enlarged the Android adaptive launcher mark for better mask fill.
